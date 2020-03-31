@@ -1,17 +1,17 @@
 <template>
 	<div id="app">
-		<img alt="Vue logo" src="./assets/logo.png">
-		<HelloWorld msg="Welcome to Your Vue.js App"/>
+		<h1>AJAX examples</h1>
+		<Agify/>	
 	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Agify from './components/Agify';
 
 export default {
 	name: 'App',
 	components: {
-		HelloWorld
+		Agify
 	}
 }
 </script>
@@ -21,8 +21,6 @@ export default {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
 	color: #2c3e50;
-	margin-top: 60px;
 }
 </style>
