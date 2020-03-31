@@ -5,6 +5,8 @@
 			<input type="text" v-model="name" />
 			<button @click="getData">Get data</button> <br />
 			<button @click="getDataAsync">Get data async</button>
+			<button @click="getDataAxios">Get data (axios)</button>
+			<button @click="getDataAxiosAsync">Get data (axios, async)</button>
 		</p>
 		<p v-if="model">
 			Out of {{model.count}} people, the average age of {{model.name}} is {{model.age}}.
@@ -47,6 +49,37 @@ export default {
 					name: data.name,
 					age: data.age,
 					count: data.count
+				}
+			} catch(error) {
+				console.log('Something went wrong', error);
+			}
+		},
+
+		getDataAxios() {
+			this.$http.get(baseUrl, {
+				params: { name: this.name }  //  ?name=this.name
+			})
+			.then(response => {
+				console.log('getDataAxios', typeof response.data, response.data);
+				this.model = {
+					name:  response.data.name,
+					age:   response.data.age,
+					count: response.data.count
+				}
+			})
+			.catch(error => {
+				console.log('Something went wrong', error);
+			});
+		},
+		async getDataAxiosAsync() {
+			try {
+				let response = await this.$http.get(baseUrl, {
+					params: { name: this.name }
+				});
+				this.model = {
+					name:  response.data.name,
+					age:   response.data.age,
+					count: response.data.count
 				}
 			} catch(error) {
 				console.log('Something went wrong', error);
